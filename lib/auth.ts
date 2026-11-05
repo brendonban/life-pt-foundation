@@ -3,7 +3,7 @@
 //              including sign-ups (personal data), email and the admin list.
 //  - "editor": anyone signed in with a Google account on an allowed domain (EDITOR_DOMAINS,
 //              by default siswa.um.edu.my and um.edu.my). Can edit page content and upload images only.
-import { adminAuth } from './firebaseAdmin';
+import { adminAuth, firebaseProjectId } from './firebaseAdmin';
 import { DEMO, demoWritesAllowed, store } from './store';
 
 export class HttpError extends Error { constructor(public status: number, message: string) { super(message); } }
@@ -32,7 +32,8 @@ async function identify(req: Request): Promise<Caller> {
     throw new HttpError(401, 'Please sign in.');
   }
   let decoded;
-  try { decoded = await (await adminAuth()).verifyIdToken(token); } catch { throw new HttpError(401, 'Your sign-in has expired. Please sign in again.'); }
+  try { decoded = await (await adminAuth()).verifyIdToken(token); }
+  catch (e) { throw explainTokenError(e); }
   const email = (decoded.email || '').toLowerCase();
   if (!email || !decoded.email_verified) throw new HttpError(403, 'This Google account has no verified email.');
 
@@ -43,6 +44,19 @@ async function identify(req: Request): Promise<Caller> {
   if (editorDomains().includes(domain)) return { email, role: 'editor' };
 
   throw new HttpError(403, `${email} doesn't have access. Sign in with a UM account, or ask an admin to add you.`);
+}
+
+/** Turns Firebase's error into a clear message, and records the details in the server logs. */
+export function explainTokenError(e: unknown): HttpError {
+  const err = e as { code?: string; message?: string };
+  const code = err?.code || '', msg = err?.message || String(e);
+  console.error('[admin sign-in] token check failed:', code, msg);
+  if (code === 'auth/id-token-expired') return new HttpError(401, 'Your sign-in has expired. Please sign in again.');
+  if (code === 'app/invalid-credential' || /private key|PEM|DECODER|invalid_grant|credential/i.test(msg))
+    return new HttpError(500, 'The server can\'t use its Firebase key. In Vercel, re-enter FIREBASE_PRIVATE_KEY and FIREBASE_CLIENT_EMAIL exactly as in the downloaded JSON file, then redeploy.');
+  if (/aud|audience|project/i.test(msg))
+    return new HttpError(500, `The server's FIREBASE_PROJECT_ID ("${firebaseProjectId}") doesn't match the Firebase project used for sign-in. Set it to the same value as NEXT_PUBLIC_FIREBASE_PROJECT_ID, then redeploy.`);
+  return new HttpError(401, `Sign-in couldn't be checked (${code || 'unknown error'}). Please sign in again; if it keeps happening, check the Vercel logs.`);
 }
 
 /** Any signed-in admin or editor. */
