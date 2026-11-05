@@ -3,7 +3,8 @@
 //              including sign-ups (personal data), email and the admin list.
 //  - "editor": anyone signed in with a Google account on an allowed domain (EDITOR_DOMAINS,
 //              by default siswa.um.edu.my and um.edu.my). Can edit page content and upload images only.
-import { adminAuth, firebaseProjectId } from './firebaseAdmin';
+import { firebaseProjectId } from './firebaseAdmin';
+import { verifyFirebaseIdToken } from './verifyIdToken';
 import { DEMO, demoWritesAllowed, store } from './store';
 
 export class HttpError extends Error { constructor(public status: number, message: string) { super(message); } }
@@ -32,13 +33,16 @@ async function identify(req: Request): Promise<Caller> {
     throw new HttpError(401, 'Please sign in.');
   }
   let decoded;
-  try { decoded = await (await adminAuth()).verifyIdToken(token); }
+  try { decoded = await verifyFirebaseIdToken(token, signInProjectId()); }
   catch (e) { throw explainTokenError(e); }
   const email = (decoded.email || '').toLowerCase();
   if (!email || !decoded.email_verified) throw new HttpError(403, 'This Google account has no verified email.');
 
-  const admins = [...bootstrapAdmins(), ...(await store.getAdmins()).map((e) => e.toLowerCase())];
-  if (admins.includes(email)) return { email, role: 'admin' };
+  if (bootstrapAdmins().includes(email)) return { email, role: 'admin' };
+  let listed: string[] = [];
+  try { listed = (await store.getAdmins()).map((e) => e.toLowerCase()); }
+  catch (e) { console.error('[admin sign-in] could not load the admin list', e); }
+  if (listed.includes(email)) return { email, role: 'admin' };
 
   const domain = email.slice(email.lastIndexOf('@') + 1); // exact match: "x@evilum.edu.my" does not count
   if (editorDomains().includes(domain)) return { email, role: 'editor' };
@@ -46,17 +50,22 @@ async function identify(req: Request): Promise<Caller> {
   throw new HttpError(403, `${email} doesn't have access. Sign in with a UM account, or ask an admin to add you.`);
 }
 
-/** Turns Firebase's error into a clear message, and records the details in the server logs. */
+/** The Firebase project that issues sign-in tokens (the browser config), falling back to the server one. */
+const signInProjectId = () =>
+  (process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || '').trim().replace(/^(['"])(.*)\1$/, '$2').trim() || firebaseProjectId;
+
+/** Turns a token-check failure into a clear message, and records the details in the server logs. */
 export function explainTokenError(e: unknown): HttpError {
-  const err = e as { code?: string; message?: string };
+  const err = e as { code?: string; claim?: string; message?: string };
   const code = err?.code || '', msg = err?.message || String(e);
-  console.error('[admin sign-in] token check failed:', code, msg);
-  if (code === 'auth/id-token-expired') return new HttpError(401, 'Your sign-in has expired. Please sign in again.');
-  if (code === 'app/invalid-credential' || /private key|PEM|DECODER|invalid_grant|credential/i.test(msg))
-    return new HttpError(500, 'The server can\'t use its Firebase key. In Vercel, re-enter FIREBASE_PRIVATE_KEY and FIREBASE_CLIENT_EMAIL exactly as in the downloaded JSON file, then redeploy.');
-  if (/aud|audience|project/i.test(msg))
-    return new HttpError(500, `The server's FIREBASE_PROJECT_ID ("${firebaseProjectId}") doesn't match the Firebase project used for sign-in. Set it to the same value as NEXT_PUBLIC_FIREBASE_PROJECT_ID, then redeploy.`);
-  return new HttpError(401, `Sign-in couldn't be checked (${code || 'unknown error'}). Please sign in again; if it keeps happening, check the Vercel logs.`);
+  console.error('[admin sign-in] token check failed:', code, err?.claim || '', msg);
+  if (code === 'ERR_JWT_EXPIRED') return new HttpError(401, 'Your sign-in has expired. Please sign in again.');
+  if (code === 'ERR_JWT_CLAIM_VALIDATION_FAILED' && (err.claim === 'aud' || err.claim === 'iss'))
+    return new HttpError(500, `This sign-in came from a different Firebase project than the server expects ("${signInProjectId()}"). Check that NEXT_PUBLIC_FIREBASE_PROJECT_ID and FIREBASE_PROJECT_ID are both lifeplus-um, then redeploy.`);
+  if (code === 'LIFEPLUS_NO_PROJECT') return new HttpError(500, 'NEXT_PUBLIC_FIREBASE_PROJECT_ID is not set on the server. Add it in Vercel, then redeploy.');
+  if (code === 'ERR_JWKS_TIMEOUT' || /fetch|network|ENOTFOUND|ECONN/i.test(msg))
+    return new HttpError(503, 'Couldn\'t reach Google to check your sign-in. Please try again in a moment.');
+  return new HttpError(401, `Sign-in couldn't be checked (${code || 'unknown error'}). Please sign out and sign in again.`);
 }
 
 /** Any signed-in admin or editor. */
