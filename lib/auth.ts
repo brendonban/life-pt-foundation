@@ -32,7 +32,7 @@ async function identify(req: Request): Promise<Caller> {
     throw new HttpError(401, 'Please sign in.');
   }
   let decoded;
-  try { decoded = await adminAuth().verifyIdToken(token); } catch { throw new HttpError(401, 'Your sign-in has expired. Please sign in again.'); }
+  try { decoded = await (await adminAuth()).verifyIdToken(token); } catch { throw new HttpError(401, 'Your sign-in has expired. Please sign in again.'); }
   const email = (decoded.email || '').toLowerCase();
   if (!email || !decoded.email_verified) throw new HttpError(403, 'This Google account has no verified email.');
 
