@@ -1,0 +1,406 @@
+{
+  "event": {
+    "name": "LIFE+",
+    "fullTitle": "LIFE+ : Healthy Ageing with HIV",
+    "tagline": "Living well at every stage of life.",
+    "intro": "A one-day community event on healthy ageing with HIV. It's open to adults of every age: older adults living it now, younger adults planning ahead, and the caregivers and friends who support them. Join us for conversation, wellbeing check-ins, games, music, creative reflection and a shared lunch.",
+    "date": "Saturday, 12 December 2026",
+    "time": "9:00 AM – 4:30 PM",
+    "venue": "PT Foundation, Sentul, Kuala Lumpur",
+    "venueNote": "Venue to be confirmed",
+    "places": "50",
+    "rsvpNote": "RSVP only. Places are limited, so please sign up early.",
+    "regOpen": true,
+    "regClosedMessage": "Registration is now closed. Thank you for your interest. Please contact us if you would like to join the waiting list.",
+    "organisers": "Universiti Malaya × PT Foundation × Ruang Malaysia",
+    "contact": "Brendon Ban · WhatsApp @imbrendonban\n22059169@siswa.um.edu.my\n\nBenjamin Gan · WhatsApp @ibentities\ns2033266@siswa.um.edu.my",
+    "credit": "Run by **Universiti Malaya**. Co-organised by **PT Foundation** and **Ruang Malaysia**.",
+    "quotes": "I want to grow older well, not just longer.\nI don't want to face this alone.\nWhat does getting older with HIV look like for me?\nI want to start planning for my future now.\nI still have so much life to live.",
+    "privacyNote": "We will never ask about your HIV status. Your details are used only to organise LIFE+ and are seen only by the organising team."
+  },
+  "nav": {
+    "about": true,
+    "speakers": true,
+    "sponsors": true,
+    "schedule": true,
+    "directory": true,
+    "gettingHere": true,
+    "signup": true
+  },
+  "line": {
+    "aboveWords": "life, independence, fulfilment, empowerment",
+    "belowWords": "isolation, stigma, silence, worry",
+    "label": "the line of support",
+    "belowText": "**Below the line.** Isolation, stigma, silence and worry can creep in as we grow older with HIV. They are common, and they are not your fault. Noticing them is the first step up.",
+    "aboveText": "**Above the line.** Life, independence, fulfilment and empowerment. LIFE+ is a day to move up together, at your own pace, with people who understand."
+  },
+  "emails": {
+    "autoConfirm": true,
+    "confirmSubject": "You're registered for LIFE+ on {{date}}",
+    "confirmBody": "Hi {{name}},\n\nThank you for signing up for LIFE+ : Healthy Ageing with HIV. Your place is saved.\n\nDate: {{date}}\nTime: {{time}}\nVenue: {{venue}}\n\nWe'll send a reminder and directions closer to the day. If you can no longer come, just reply to this email so we can offer your place to someone else.\n\nSee you soon,\nThe LIFE+ team",
+    "templates": [
+      {
+        "name": "Reminder (1 week before)",
+        "subject": "See you next week at LIFE+",
+        "body": "Hi {{name}},\n\nA friendly reminder that LIFE+ : Healthy Ageing with HIV is happening next week.\n\nDate: {{date}}\nTime: {{time}}\nVenue: {{venue}}\n\nEverything is optional on the day, so come as you are. If you need help getting there, or your plans have changed, just reply to this email.\n\nWarmly,\nThe LIFE+ team"
+      },
+      {
+        "name": "Directions (day before)",
+        "subject": "Tomorrow at LIFE+: how to get there",
+        "body": "Hi {{name}},\n\nWe're looking forward to seeing you tomorrow.\n\nWhen: {{date}}, {{time}}\nWhere: {{venue}}\n\nPlease arrive from 9:00 AM for check-in and refreshments. Our volunteers will meet you at the entrance.\n\nIf anything comes up, reply to this email or message us on WhatsApp.\n\nSee you tomorrow,\nThe LIFE+ team"
+      },
+      {
+        "name": "Thank you & feedback",
+        "subject": "Thank you for joining LIFE+",
+        "body": "Hi {{name}},\n\nThank you for being part of LIFE+. We hope you enjoyed the day and met some new friends.\n\nWe'd love to hear how it went for you. Your feedback helps us plan future healthy ageing events.\n\nWith thanks,\nThe LIFE+ team"
+      }
+    ]
+  },
+  "helplines": [
+    {
+      "name": "Befrienders KL",
+      "number": "03-7627 2929",
+      "hours": "24 hours · free and confidential"
+    },
+    {
+      "name": "Talian HEAL 15555 (Ministry of Health)",
+      "number": "15555",
+      "hours": "8 AM – midnight, every day"
+    },
+    {
+      "name": "Talian Kasih",
+      "number": "15999",
+      "hours": "24 hours"
+    },
+    {
+      "name": "Emergency",
+      "number": "999",
+      "hours": "If you or someone is in immediate danger"
+    }
+  ],
+  "pillars": [
+    {
+      "letter": "L",
+      "word": "Life",
+      "text": "Living well, with good health and joy, at every age."
+    },
+    {
+      "letter": "I",
+      "word": "Independence",
+      "text": "Keeping choice, control and confidence in daily life."
+    },
+    {
+      "letter": "F",
+      "word": "Fulfilment",
+      "text": "Meaningful relationships, purpose and connection."
+    },
+    {
+      "letter": "E+",
+      "word": "Empowerment",
+      "text": "Knowing your support and speaking up for your needs."
+    }
+  ],
+  "stats": [
+    {
+      "figure": "44%",
+      "text": "of adults on HIV treatment at UMMC had high blood pressure, and over half were first diagnosed through study screening.",
+      "source": "Chong et al., 2020"
+    },
+    {
+      "figure": "80%+",
+      "text": "of people with severe mental health symptoms had not been recognised clinically.",
+      "source": "Chong et al., 2020"
+    },
+    {
+      "figure": "35%",
+      "text": "were socially isolated. Isolation and severe stress were linked to lower cognitive scores.",
+      "source": "Neelamegam et al., 2024"
+    },
+    {
+      "figure": "1.8×",
+      "text": "higher risk of death for adults diagnosed at 50 or older, who often present later.",
+      "source": "Wong et al., 2023"
+    }
+  ],
+  "objectives": [
+    {
+      "title": "Promote healthy ageing",
+      "text": "Awareness of the physical, psychological and social needs of older adults with HIV."
+    },
+    {
+      "title": "Empower older adults",
+      "text": "Space to share their perspectives, explore their wellbeing and find the right support."
+    },
+    {
+      "title": "Strengthen caregiving",
+      "text": "Better understanding of ageing needs, emotional support and caregiver wellbeing."
+    },
+    {
+      "title": "Encourage holistic healthcare",
+      "text": "Collaboration across medicine, nursing, psychology, counselling and community care."
+    },
+    {
+      "title": "Address stigma and isolation",
+      "text": "Inclusive attitudes, meaningful social connection and dignity in ageing."
+    },
+    {
+      "title": "Build sustainable partnerships",
+      "text": "Continued collaboration and future healthy ageing initiatives."
+    }
+  ],
+  "audiences": [
+    {
+      "number": "25",
+      "title": "Adults living with HIV",
+      "text": "The focus of the day. Older adults are at the heart of LIFE+, and younger adults are welcome to plan ahead for healthy ageing."
+    },
+    {
+      "number": "15",
+      "title": "Caregivers, family and friends",
+      "text": "Supporting someone living with HIV, and looking after themselves too."
+    },
+    {
+      "number": "10",
+      "title": "Community organisations",
+      "text": "Advocates in HIV, ageing, health promotion and community wellbeing."
+    }
+  ],
+  "stations": [
+    {
+      "name": "MOOD+",
+      "kind": "Check in",
+      "text": "Short one-to-one check-in on mood, stress and worry, with supervised counselling trainees."
+    },
+    {
+      "name": "MEMORY+",
+      "kind": "Check in",
+      "text": "Quick memory and thinking check, one-to-one, with trained health students."
+    },
+    {
+      "name": "MOVE+",
+      "kind": "Have fun",
+      "text": "Seated dance, joget and stretching to golden-oldies music. Rest breaks any time."
+    },
+    {
+      "name": "PLAY+",
+      "kind": "Have fun",
+      "text": "Bingo, congkak, dam haji, carrom and word games, with small prizes. Large print, no rush."
+    },
+    {
+      "name": "CONNECT+",
+      "kind": "Have fun",
+      "text": "Conversation cards, partner activities and shared stories. Speak, write, point or just listen."
+    }
+  ],
+  "team": [
+    {
+      "name": "Brendon Ban",
+      "role": "Trainee Counselor · Co-lead",
+      "group": "Organising team",
+      "photo": "/media/brendon.jpg",
+      "interests": "Grief and Loss, Identity Concerns, HIV/AIDS, Men's Issues, Mental Health, Sexuality",
+      "affiliation": "Master's in Counseling, Universiti Malaya\nResearch Assistant, Sunway University",
+      "bio": "Brendon is a Master of Counseling student and trainee counselor at Universiti Malaya, and a research assistant at Sunway University.\n\nHe co-leads LIFE+ with Benjamin.",
+      "email": "22059169@siswa.um.edu.my",
+      "whatsapp": "@imbrendonban",
+      "linkedin": ""
+    },
+    {
+      "name": "Benjamin Gan",
+      "role": "Trainee Counselor · Co-lead",
+      "group": "Organising team",
+      "photo": "",
+      "interests": "",
+      "affiliation": "Master's in Counseling, Universiti Malaya\nLawyer",
+      "bio": "Benjamin is a Master of Counseling student and trainee counselor at Universiti Malaya. He is also a lawyer.\n\nHe co-leads LIFE+ with Brendon.",
+      "email": "s2033266@siswa.um.edu.my",
+      "whatsapp": "@ibentities",
+      "linkedin": ""
+    },
+    {
+      "name": "Dr. Ahmad Shamsuri Muhamad",
+      "role": "Supervisor",
+      "group": "Supervisor",
+      "photo": "",
+      "interests": "",
+      "affiliation": "Universiti Malaya\nKB03591 / PA06930",
+      "bio": "Dr. Ahmad Shamsuri Muhamad supervises the LIFE+ counselling team.",
+      "email": "",
+      "whatsapp": "",
+      "linkedin": ""
+    }
+  ],
+  "speakers": [],
+  "sponsors": [
+    {
+      "name": "Universiti Malaya",
+      "tier": "Organiser",
+      "text": "Lead organiser, through postgraduate counselling trainees under faculty supervision.",
+      "url": "https://www.um.edu.my",
+      "logo": "",
+      "showOnHome": true
+    },
+    {
+      "name": "PT Foundation",
+      "tier": "Co-organiser",
+      "text": "Malaysia's largest community-based HIV organisation, and host of LIFE+.",
+      "url": "https://ptfmalaysia.org",
+      "logo": "",
+      "showOnHome": true
+    },
+    {
+      "name": "Ruang Malaysia",
+      "tier": "Co-organiser",
+      "text": "Co-organising partner.",
+      "url": "",
+      "logo": "",
+      "showOnHome": true
+    }
+  ],
+  "schedule": [
+    {
+      "period": "Morning",
+      "time": "9:00 – 9:30 AM",
+      "title": "RSVP check-in, refreshments and welcome",
+      "detail": "",
+      "highlight": false
+    },
+    {
+      "period": "Morning",
+      "time": "9:30 – 9:45 AM",
+      "title": "Opening: Welcome to LIFE+",
+      "detail": "",
+      "highlight": false
+    },
+    {
+      "period": "Morning",
+      "time": "9:45 – 10:30 AM",
+      "title": "Beyond the Diagnosis: interactive panel",
+      "detail": "A clinician, a caregiver and a person ageing with HIV. Your questions shape the conversation.",
+      "highlight": true
+    },
+    {
+      "period": "Morning",
+      "time": "10:30 – 11:00 AM",
+      "title": "Morning break and social connection",
+      "detail": "",
+      "highlight": false
+    },
+    {
+      "period": "Morning",
+      "time": "11:00 AM – 12:00 PM",
+      "title": "LIFE+ Wellbeing Stations",
+      "detail": "Private, optional mood and memory check-ins, plus seated dance, games and conversation.",
+      "highlight": true
+    },
+    {
+      "period": "Afternoon",
+      "time": "12:00 – 1:00 PM",
+      "title": "Lunch with golden-oldies karaoke",
+      "detail": "",
+      "highlight": false
+    },
+    {
+      "period": "Afternoon",
+      "time": "1:00 – 1:45 PM",
+      "title": "My Life, My Story",
+      "detail": "Draw, write or share what makes life meaningful, with no need to disclose HIV status.",
+      "highlight": true
+    },
+    {
+      "period": "Afternoon",
+      "time": "1:45 – 2:30 PM",
+      "title": "Open stations: catch-up check-ins and games",
+      "detail": "",
+      "highlight": false
+    },
+    {
+      "period": "Afternoon",
+      "time": "2:30 – 3:00 PM",
+      "title": "Afternoon refreshments and rest",
+      "detail": "",
+      "highlight": false
+    },
+    {
+      "period": "Afternoon",
+      "time": "3:00 – 3:30 PM",
+      "title": "Support Passport",
+      "detail": "A booth trail with PT Foundation, clinics and community groups. Collect a stamp at each and leave with a personal support map.",
+      "highlight": true
+    },
+    {
+      "period": "Afternoon",
+      "time": "3:30 – 4:00 PM",
+      "title": "My LIFE+ Wellbeing Plan",
+      "detail": "A one-page worksheet: one next step each for body, feelings, connection and support. Private unless you choose to share.",
+      "highlight": true
+    },
+    {
+      "period": "Afternoon",
+      "time": "4:00 – 4:30 PM",
+      "title": "Closing: Tree of Hopes and feedback",
+      "detail": "Everyone adds a leaf with one hope. The finished tree becomes a shared artwork for PT Foundation's space.",
+      "highlight": true
+    }
+  ],
+  "directory": [
+    {
+      "name": "PT Foundation",
+      "category": "HIV support & community",
+      "text": "HIV testing, counselling, peer support, care and referral services.",
+      "phone": "",
+      "email": "chew@ptfmalaysia.org",
+      "url": "https://ptfmalaysia.org",
+      "address": "Kuala Lumpur"
+    },
+    {
+      "name": "Universiti Malaya Medical Centre (UMMC)",
+      "category": "Clinics & hospitals",
+      "text": "Tertiary hospital with infectious diseases and HIV care services.",
+      "phone": "",
+      "email": "",
+      "url": "https://www.ummc.edu.my",
+      "address": "Lembah Pantai, Kuala Lumpur"
+    },
+    {
+      "name": "Malaysian AIDS Council",
+      "category": "HIV support & community",
+      "text": "National umbrella body for HIV organisations in Malaysia.",
+      "phone": "",
+      "email": "",
+      "url": "https://www.mac.org.my",
+      "address": "Kuala Lumpur"
+    },
+    {
+      "name": "Befrienders Kuala Lumpur",
+      "category": "Emotional support",
+      "text": "Free, confidential emotional support, 24 hours a day.",
+      "phone": "",
+      "email": "",
+      "url": "https://www.befrienders.org.my",
+      "address": ""
+    }
+  ],
+  "gettingHere": {
+    "address": "PT Foundation, Sentul, Kuala Lumpur\n(Exact address will be confirmed)",
+    "mapQuery": "PT Foundation Kuala Lumpur",
+    "ways": [
+      {
+        "icon": "🚆",
+        "mode": "By train",
+        "text": "Nearest stations will be confirmed with the venue. We will share step-by-step directions with registered participants."
+      },
+      {
+        "icon": "🚗",
+        "mode": "By car / e-hailing",
+        "text": "Drop-off at the entrance. Parking details to be confirmed."
+      },
+      {
+        "icon": "♿",
+        "mode": "Accessibility",
+        "text": "Tell us your access needs when you sign up and our volunteers will meet you at the entrance."
+      }
+    ],
+    "notes": "Need help getting there? Message us on WhatsApp and we will help you plan your trip."
+  }
+}
