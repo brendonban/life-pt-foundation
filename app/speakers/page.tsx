@@ -1,12 +1,23 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getContent } from '@/lib/content';
-import { initials } from '@/lib/util';
+import { initials, mediaUrl, SPEAKER_CATEGORIES } from '@/lib/util';
+import type { Speaker } from '@/lib/types';
 
 export const metadata: Metadata = { title: 'Speakers' };
 
 export default async function Speakers() {
   const c = await getContent();
+  // Group by role at the event, most senior first; unknown roles go after the known ones.
+  const groups = new Map<string, Speaker[]>();
+  c.speakers.forEach((s) => { const k = (s.category || 'Speaker').trim(); if (!groups.has(k)) groups.set(k, []); groups.get(k)!.push(s); });
+  const rank = (k: string) => { const i = SPEAKER_CATEGORIES.indexOf(k); return i === -1 ? 99 : i; };
+  const ordered = [...groups.entries()].sort((a, b) => rank(a[0]) - rank(b[0]));
+  const plural = (k: string, n: number) => {
+    if (n < 2 || /s$/i.test(k)) return k;
+    const m = /^(\w+)( of .+)$/i.exec(k); // "Guest of Honour" -> "Guests of Honour"
+    return m ? `${m[1]}s${m[2]}` : `${k}s`;
+  };
   return (
     <>
       <div className="wrap page-head">
@@ -16,11 +27,18 @@ export default async function Speakers() {
       </div>
       <section style={{ paddingTop: 20 }}><div className="wrap">
         {c.speakers.length ? (
-          <div className="grid g3">
-            {c.speakers.map((s, i) => (
-              <div className="card person" style={{ flexDirection: 'column' }} key={i}>
-                <div className="avatar" aria-hidden="true">{initials(s.name)}</div>
-                <div>
+          <>{ordered.map(([cat, list]) => (
+            <div className="speaker-group" key={cat}>
+              <h2 className="team-label">{plural(cat, list.length)}</h2>
+          <div className="speaker-grid">
+            {list.map((s, i) => (
+              <div className="card speaker-card" key={i}>
+                <div className="speaker-photo">
+                  <div className="tm-initials" aria-hidden="true">{initials(s.name)}</div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  {s.photo && <img src={mediaUrl(s.photo)} alt={`Photo of ${s.name}`} loading="lazy" />}
+                </div>
+                <div className="speaker-body">
                   {s.session && <span className="tag coral">{s.session}</span>}
                   <h3 style={{ marginTop: 10 }}>{s.name}</h3>
                   <div className="role">{s.title}{s.org ? ` · ${s.org}` : ''}</div>
@@ -29,6 +47,8 @@ export default async function Speakers() {
               </div>
             ))}
           </div>
+            </div>
+          ))}</>
         ) : (
           <div className="empty soon">
             <div className="soon-dot" aria-hidden="true" />

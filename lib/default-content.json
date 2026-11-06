@@ -402,5 +402,65 @@
       }
     ],
     "notes": "Need help getting there? Message us on WhatsApp and we will help you plan your trip."
-  }
+  },
+  "sponsorship": {
+    "intro": "LIFE+ is a free community day for about 60 people. We are looking for organisations and individuals who can help us make it warm, safe and fun. Every contribution, big or small, goes straight into the day.",
+    "formOpen": true,
+    "thankYou": "Thank you for offering to support LIFE+! We will get back to you within 3 working days."
+  },
+  "sponsorAsks": [
+    {
+      "emoji": "🍱",
+      "title": "Lunch & refreshments",
+      "text": "Lunch, tea breaks and drinks for about 60 participants and volunteers."
+    },
+    {
+      "emoji": "🎁",
+      "title": "Prizes & goodie bags",
+      "text": "Small prizes for bingo and games, plus take-home wellness packs."
+    },
+    {
+      "emoji": "🎨",
+      "title": "Activity materials",
+      "text": "Art supplies, worksheets and printing for My Life, My Story and the Support Passport."
+    },
+    {
+      "emoji": "🚐",
+      "title": "Transport help",
+      "text": "E-hailing vouchers or a van so older participants can get there safely."
+    },
+    {
+      "emoji": "🩺",
+      "title": "Health & community booths",
+      "text": "Clinics and community groups to host a booth on the Support Passport trail."
+    },
+    {
+      "emoji": "🤝",
+      "title": "Volunteers & expertise",
+      "text": "Health professionals, interpreters or photographers to help on the day."
+    },
+    {
+      "emoji": "💝",
+      "title": "Cash contribution",
+      "text": "Any amount helps cover the day. We will share how every ringgit was used."
+    }
+  ],
+  "sponsorPerks": [
+    {
+      "emoji": "🌟",
+      "text": "Your logo on the LIFE+ website and partner carousel"
+    },
+    {
+      "emoji": "📣",
+      "text": "A thank-you on stage and on our social media"
+    },
+    {
+      "emoji": "🧭",
+      "text": "A booth on the Support Passport trail (for health and community partners)"
+    },
+    {
+      "emoji": "📜",
+      "text": "A certificate of appreciation and a short impact report after the event"
+    }
+  ]
 }

@@ -7,6 +7,8 @@ export interface Section {
   label: string; kind: 'object' | 'list'; path: string; title?: string; fields: Field[];
   addLabel?: string; sub?: { key: string; label: string; title: string; fields: Field[] };
 }
+import { SPEAKER_CATEGORIES } from '@/lib/util';
+
 const F = (key: string, label: string, type: Field['type'] = 'text', opts: Partial<Field> = {}): Field => ({ key, label, type, ...opts });
 
 export const SECTIONS: Record<string, Section> = {
@@ -54,13 +56,22 @@ export const SECTIONS: Record<string, Section> = {
     F('whatsapp', 'WhatsApp (number or @username)'), F('linkedin', 'LinkedIn link (optional)', 'url'),
   ] },
   speakers: { label: 'Speakers', kind: 'list', path: 'speakers', title: 'name', addLabel: 'speaker',
-    fields: [F('name', 'Name'), F('title', 'Title / role'), F('org', 'Organisation'), F('session', 'Session'), F('bio', 'Short bio', 'textarea', { wide: true })] },
+    fields: [F('photo', 'Photo', 'image', { wide: true }), F('category', 'Role at the event', 'select', { options: SPEAKER_CATEGORIES, default: 'Speaker' }), F('name', 'Name'), F('title', 'Job title'), F('org', 'Organisation'), F('session', 'Session'), F('bio', 'Short bio', 'textarea', { wide: true })] },
   sponsors: { label: 'Sponsors & partners', kind: 'list', path: 'sponsors', title: 'name', addLabel: 'partner', fields: [
     F('logo', 'Logo', 'image', { wide: true, logo: true }), F('name', 'Name'),
     F('tier', 'Category', 'select', { options: ['Organiser', 'Co-organiser', 'Sponsor', 'Supporting partner', 'Community partner'], default: 'Supporting partner' }),
     F('url', 'Website (https://…)', 'url'), F('showOnHome', 'Show in the home page carousel', 'checkbox', { default: true }),
     F('text', 'Description', 'textarea', { wide: true }),
   ] },
+  sponsorship: { label: 'Sponsorship page', kind: 'object', path: 'sponsorship', fields: [
+    F('intro', 'Intro under “What we’re looking for”', 'textarea', { wide: true }),
+    F('formOpen', 'Sponsorship form is open', 'checkbox', { default: true }),
+    F('thankYou', 'Thank-you message (shown after sending, and in the email)', 'textarea', { wide: true }),
+  ] },
+  sponsorAsks: { label: 'Sponsorship: what we need', kind: 'list', path: 'sponsorAsks', title: 'title', addLabel: 'item',
+    fields: [F('emoji', 'Emoji (e.g. 🍱)'), F('title', 'Title'), F('text', 'Description', 'textarea', { wide: true })] },
+  sponsorPerks: { label: 'Sponsorship: what sponsors get', kind: 'list', path: 'sponsorPerks', title: 'text', addLabel: 'benefit',
+    fields: [F('emoji', 'Emoji (e.g. 🌟)'), F('text', 'Benefit', 'text', { wide: true })] },
   schedule: { label: 'Schedule', kind: 'list', path: 'schedule', title: 'title', addLabel: 'session', fields: [
     F('period', 'Part of day', 'select', { options: ['Morning', 'Afternoon', 'Evening'] }), F('time', 'Time'),
     F('title', 'Session title', 'text', { wide: true }), F('detail', 'Details', 'textarea', { wide: true }), F('highlight', 'Highlight as hands-on', 'checkbox'),

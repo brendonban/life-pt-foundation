@@ -18,17 +18,25 @@ export interface TeamMember {
   name: string; role: string; group: string; photo: string; interests: string;
   affiliation: string; bio: string; email: string; whatsapp: string; linkedin: string;
 }
-export interface Speaker { name: string; title: string; org: string; session: string; bio: string }
+export interface Speaker { name: string; title: string; org: string; session: string; bio: string; photo?: string; category?: string }
 export interface Sponsor { name: string; tier: string; text: string; url: string; logo: string; showOnHome: boolean }
 export interface ScheduleItem { period: string; time: string; title: string; detail: string; highlight: boolean }
 export interface DirectoryItem { name: string; category: string; text: string; phone: string; email: string; url: string; address: string }
+export interface SponsorshipInfo { intro: string; formOpen: boolean; thankYou: string }
+export interface SponsorAsk { emoji: string; title: string; text: string }
+export interface SponsorPerk { emoji: string; text: string }
+export interface SponsorEnquiry {
+  id: string; createdAt: string; name: string; organisation?: string; email: string; phone?: string;
+  offers: string[]; details: string; credit?: string; website?: string; status: string;
+}
 export interface Way { icon: string; mode: string; text: string }
 export interface GettingHere { address: string; mapQuery: string; ways: Way[]; notes: string }
 
 export interface Content {
   event: EventInfo; nav: NavSettings; line: LineOfSupport; emails: EmailSettings; helplines: Helpline[];
   pillars: Pillar[]; stats: Stat[]; objectives: Objective[]; audiences: Audience[]; stations: Station[];
-  team: TeamMember[]; speakers: Speaker[]; sponsors: Sponsor[]; schedule: ScheduleItem[];
+  team: TeamMember[]; speakers: Speaker[]; sponsors: Sponsor[];
+  sponsorship: SponsorshipInfo; sponsorAsks: SponsorAsk[]; sponsorPerks: SponsorPerk[]; schedule: ScheduleItem[];
   directory: DirectoryItem[]; gettingHere: GettingHere;
 }
 

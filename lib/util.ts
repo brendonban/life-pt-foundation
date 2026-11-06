@@ -42,6 +42,9 @@ export function deepMerge<T>(base: T, over: unknown): T {
   return (over === undefined || over === null ? base : over) as T;
 }
 
+/** Speaker categories, in the order they appear on the Speakers page. */
+export const SPEAKER_CATEGORIES = ['Honorary Guest', 'Guest of Honour', 'Keynote Speaker', 'Special Guest', 'Panellist', 'Moderator', 'Speaker', 'Facilitator', 'Performer'];
+
 export const ATTEND_OPTIONS = [
   'Older adult (50+)', 'Younger adult (under 50)', 'Caregiver, family or friend',
   'Community organisation', 'Health professional or student', 'Prefer not to say',
