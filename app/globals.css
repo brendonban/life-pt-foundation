@@ -184,7 +184,7 @@ section{padding:72px 0}
 /* forms */
 label{display:block;font-weight:600;margin-bottom:6px}
 .hint{display:block;font-weight:400;color:var(--muted);font-size:.9rem;margin-top:-2px;margin-bottom:6px}
-input[type=text],input[type=email],input[type=tel],input[type=url],input[type=search],select,textarea{width:100%;font:inherit;font-size:1.02rem;padding:13px 16px;border:1.5px solid #D9D1CE;border-radius:12px;background:#fff;color:var(--ink)}
+input[type=text],input[type=email],input[type=tel],input[type=number],input[type=url],input[type=search],select,textarea{width:100%;font:inherit;font-size:1.02rem;padding:13px 16px;border:1.5px solid #D9D1CE;border-radius:12px;background:#fff;color:var(--ink)}
 input:focus,select:focus,textarea:focus{border-color:var(--rasp);outline:none;box-shadow:0 0 0 4px rgba(60,10,30,.10)}
 textarea{min-height:96px;resize:vertical}
 .field{margin-bottom:22px}
@@ -521,3 +521,31 @@ body:has(.tm-dialog[open]){overflow:hidden}
   .hero h1{font-size:clamp(3rem,7vw,4.4rem)}
 }
 @media (hover:none){ .btn,.chip,.icon-btn{min-height:44px} }
+
+/* art auction */
+.auc-how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0 0 28px}
+.auc-how>div{display:flex;gap:12px;align-items:flex-start;background:var(--blush-2);border-radius:14px;padding:14px 16px;font-size:.95rem;line-height:1.45}
+.auc-how b{flex:0 0 30px;height:30px;border-radius:50%;background:var(--plum);color:#fff;display:grid;place-items:center;font-family:var(--display)}
+@media (max-width:760px){.auc-how{grid-template-columns:1fr}}
+.auc-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;font-size:.95rem}
+.auc-sort select{padding:6px 10px;font-size:.92rem;border-radius:10px;border:1.5px solid var(--line);background:#fff;font-family:inherit}
+.auc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:22px}
+.auc-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;scroll-margin-top:90px}
+.auc-img{display:block;border:0;padding:0;margin:0;background:var(--blush-2);aspect-ratio:4/5;cursor:zoom-in;width:100%}
+.auc-img img{width:100%;height:100%;object-fit:cover;display:block}
+.auc-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.auc-body h3{font-size:1.2rem;margin:0 0 2px}
+.auc-artist{color:var(--rasp);font-weight:600;font-size:.95rem;margin:0 0 2px}
+.auc-meta{color:var(--muted);font-size:.85rem;margin:0 0 12px}
+.auc-price{display:grid;grid-template-columns:1fr auto;gap:0 10px;align-items:baseline;margin:auto 0 14px;padding-top:10px;border-top:1px solid var(--line);font-size:.85rem}
+.auc-price b{font-family:var(--display);font-size:1.45rem;color:var(--plum);grid-row:span 2;align-self:center}
+.btn-block{width:100%;justify-content:center}
+.auc-dialog{border:0;border-radius:20px;padding:26px;width:min(520px,calc(100vw - 24px));max-height:calc(100vh - 24px);overflow:auto;color:var(--ink)}
+.auc-dialog::backdrop{background:rgba(60,10,30,.55)}
+.auc-view{width:min(940px,calc(100vw - 24px))}
+.auc-view-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:26px;align-items:start}
+.auc-view-grid img{width:100%;border-radius:12px;display:block}
+@media (max-width:720px){.auc-view-grid{grid-template-columns:1fr}}
+.auc-x{position:absolute;top:10px;right:12px;border:0;background:var(--blush-2);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1rem;color:var(--plum)}
+.auc-bid-head{display:flex;gap:14px;align-items:center;margin:0 40px 20px 0}
+.auc-bid-head img{width:72px;height:90px;object-fit:cover;border-radius:10px;flex:0 0 auto}
