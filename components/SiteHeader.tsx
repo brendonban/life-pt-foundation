@@ -6,7 +6,7 @@ import type { NavSettings } from '@/lib/types';
 
 const NAV: [keyof NavSettings, string, string][] = [
   ['about', '/about', 'About'], ['speakers', '/speakers', 'Speakers'], ['sponsors', '/sponsors', 'Sponsors'],
-  ['schedule', '/schedule', 'Schedule'], ['directory', '/directory', 'Directory'], ['gettingHere', '/getting-here', 'Getting Here'],
+  ['schedule', '/schedule', 'Schedule'], ['auction', '/auction', 'Art Auction'], ['directory', '/directory', 'Directory'], ['gettingHere', '/getting-here', 'Getting Here'],
 ];
 
 export default function SiteHeader({ nav }: { nav: NavSettings }) {
