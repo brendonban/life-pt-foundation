@@ -5,7 +5,7 @@ import path from 'path';
 import { randomUUID } from 'crypto';
 import { FieldValue, Timestamp } from 'firebase-admin/firestore';
 import { adminDb, firebaseConfigured } from './firebaseAdmin';
-import type { Content, MailRecord, Signup, SponsorEnquiry } from './types';
+import type { AuctionSettings, Bid, Content, MailRecord, Signup, SponsorEnquiry } from './types';
 
 export const DEMO = !firebaseConfigured;
 /** In production, the local-file demo mode is refused unless explicitly allowed. */
@@ -28,10 +28,16 @@ interface Store {
   listSponsorships(): Promise<SponsorEnquiry[]>;
   updateSponsorship(id: string, patch: Partial<SponsorEnquiry>): Promise<void>;
   deleteSponsorship(id: string): Promise<void>;
+  addBid(b: Omit<Bid, 'id' | 'createdAt'>): Promise<string>;
+  listBids(): Promise<Bid[]>;
+  deleteBid(id: string): Promise<void>;
+  getAuction(): Promise<AuctionSettings>;
+  setAuction(a: AuctionSettings): Promise<void>;
   addMail(m: Omit<MailRecord, 'id' | 'createdAt'>): Promise<void>;
   listMail(): Promise<MailRecord[]>;
 }
 
+const AUCTION_DEFAULT: AuctionSettings = { open: true, sold: [] };
 const iso = (t: unknown) => (t instanceof Timestamp ? t.toDate().toISOString() : typeof t === 'string' ? t : '');
 
 /* ---------------- Firestore ---------------- */
@@ -78,6 +84,20 @@ const firestoreStore: Store = {
   },
   async updateSponsorship(id, patch) { await adminDb().collection('sponsorships').doc(id).update(patch); },
   async deleteSponsorship(id) { await adminDb().collection('sponsorships').doc(id).delete(); },
+  async addBid(b) {
+    const ref = await adminDb().collection('bids').add({ ...b, createdAt: FieldValue.serverTimestamp() });
+    return ref.id;
+  },
+  async listBids() {
+    const q = await adminDb().collection('bids').orderBy('createdAt', 'desc').get();
+    return q.docs.map((d) => ({ ...(d.data() as Bid), id: d.id, createdAt: iso(d.get('createdAt')) }));
+  },
+  async deleteBid(id) { await adminDb().collection('bids').doc(id).delete(); },
+  async getAuction() {
+    const snap = await adminDb().doc('config/auction').get();
+    return snap.exists ? { ...AUCTION_DEFAULT, ...(snap.data() as AuctionSettings) } : AUCTION_DEFAULT;
+  },
+  async setAuction(a) { await adminDb().doc('config/auction').set(a); },
   async addMail(m) { await adminDb().collection('mail').add({ ...m, createdAt: FieldValue.serverTimestamp() }); },
   async listMail() {
     const q = await adminDb().collection('mail').orderBy('createdAt', 'desc').limit(300).get();
@@ -88,7 +108,7 @@ const firestoreStore: Store = {
 /* ---------------- Local file (demo / development) ---------------- */
 interface FileDb {
   content: Partial<Content> | null; signups: Signup[]; admins: string[];
-  media: Record<string, { type: string; data: string }>; mail: MailRecord[]; sponsorships?: SponsorEnquiry[];
+  media: Record<string, { type: string; data: string }>; mail: MailRecord[]; sponsorships?: SponsorEnquiry[]; bids?: Bid[]; auction?: AuctionSettings;
 }
 const DB_FILE = path.join(process.cwd(), '.data', 'db.json');
 let queue: Promise<unknown> = Promise.resolve();
@@ -122,6 +142,11 @@ const fileStore: Store = {
   async listSponsorships() { return ((await readDb()).sponsorships || []).slice().reverse(); },
   async updateSponsorship(id, patch) { await writeDb((db) => { const r = (db.sponsorships || []).find((x) => x.id === id); if (r) Object.assign(r, patch); }); },
   async deleteSponsorship(id) { await writeDb((db) => { db.sponsorships = (db.sponsorships || []).filter((x) => x.id !== id); }); },
+  async addBid(b) { const id = randomUUID(); await writeDb((db) => { (db.bids ??= []).push({ ...b, id, createdAt: now() } as Bid); }); return id; },
+  async listBids() { return ((await readDb()).bids || []).slice().reverse(); },
+  async deleteBid(id) { await writeDb((db) => { db.bids = (db.bids || []).filter((x) => x.id !== id); }); },
+  async getAuction() { return { ...AUCTION_DEFAULT, ...((await readDb()).auction || {}) }; },
+  async setAuction(a) { await writeDb((db) => { db.auction = a; }); },
   async addMail(m) { await writeDb((db) => { db.mail.push({ ...m, id: randomUUID(), createdAt: now() }); }); },
   async listMail() { return (await readDb()).mail.slice().reverse().slice(0, 300); },
 };

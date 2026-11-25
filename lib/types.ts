@@ -4,7 +4,7 @@ export interface EventInfo {
   places: string; rsvpNote: string; regOpen: boolean; regClosedMessage: string;
   organisers: string; contact: string; credit: string; quotes: string; privacyNote: string;
 }
-export interface NavSettings { about: boolean; speakers: boolean; sponsors: boolean; schedule: boolean; directory: boolean; gettingHere: boolean; signup: boolean }
+export interface NavSettings { about: boolean; speakers: boolean; sponsors: boolean; schedule: boolean; directory: boolean; gettingHere: boolean; signup: boolean; auction?: boolean }
 export interface LineOfSupport { aboveWords: string; belowWords: string; label: string; belowText: string; aboveText: string }
 export interface EmailTemplate { name: string; subject: string; body: string }
 export interface EmailSettings { autoConfirm: boolean; confirmSubject: string; confirmBody: string; templates: EmailTemplate[] }
@@ -29,6 +29,11 @@ export interface SponsorEnquiry {
   id: string; createdAt: string; name: string; organisation?: string; email: string; phone?: string;
   offers: string[]; details: string; credit?: string; website?: string; status: string;
 }
+export interface Bid {
+  id: string; createdAt: string; artworkId: string; artworkTitle: string; amount: number;
+  name: string; email: string; whatsapp: string;
+}
+export interface AuctionSettings { open: boolean; sold: string[]; endsAt?: string }
 export interface Way { icon: string; mode: string; text: string }
 export interface GettingHere { address: string; mapQuery: string; ways: Way[]; notes: string }
 
