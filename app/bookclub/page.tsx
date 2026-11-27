@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Book club · 被讨厌的勇气',
-  description: '《被讨厌的勇气》体验式读书会：在关系地图中重新校準人际距离。An experiential book club on Adlerian psychology at LIFE+.',
+  description: '《被讨厌的勇气》体验式读书会：在关系地图中重新校准人际距离。An experiential book club on Adlerian psychology at LIFE+.',
 };
 
 const PROGRAMME: [string, string, string, boolean?][] = [
