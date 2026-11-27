@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Book club · 被讨厌的勇气',
-  description: '《被讨厌的勇气》体验式读书会：在关系地图中重新校准人际距离。An experiential book club on Adlerian psychology at LIFE+.',
+  description: '《被讨厌的勇气》体验式读书会：在关系地图中重新校準人际距离。An experiential book club on Adlerian psychology at LIFE+.',
 };
 
 const PROGRAMME: [string, string, string, boolean?][] = [
@@ -30,10 +30,10 @@ export default function BookClub() {
           <div className="eyebrow">Book club · 体验式读书会</div>
           <h1 className="bc-title" lang="zh-Hans">在「不讨好」中<br />靠近彼此。</h1>
           <p className="bc-en">Please, stop people-pleasing.</p>
-          <p className="lede" lang="zh-Hans">《被讨厌的勇气》体验式读书会：在关系地图中重新校准人际距离。</p>
+          <p className="lede" lang="zh-Hans">《被讨厌的勇气》体验式读书会：在关系地图中重新校準人际距离。</p>
           <div className="bc-actions">
             <Link href="/register" className="btn btn-rasp">立即报名 Sign up →</Link>
-            <span className="muted">11am – 2pm · Free · Open to all</span>
+            <span className="muted">11am – 2pm · Free · Limited seats, register now</span>
           </div>
         </div>
         <img className="bc-cover" src="/bookclub/book.jpg" alt="《被讨厌的勇气》书封，岸见一郎、古贺史健 著" />
@@ -77,7 +77,7 @@ export default function BookClub() {
 
       <section className="band-dark"><div className="wrap bc-cta">
         <h2 lang="zh-Hans">准备好不再讨好了吗？</h2>
-        <p className="lede">名额有限，欢迎所有人参与。Spaces are limited and everyone is welcome.</p>
+        <p className="lede">名額有限，報名從速！Limited seats, register now. Everyone is welcome.</p>
         <Link href="/register" className="btn btn-rasp">立即报名 Sign up →</Link>
       </div></section>
     </>
