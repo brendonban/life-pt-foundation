@@ -549,3 +549,27 @@ body:has(.tm-dialog[open]){overflow:hidden}
 .auc-x{position:absolute;top:10px;right:12px;border:0;background:var(--blush-2);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1rem;color:var(--plum)}
 .auc-bid-head{display:flex;gap:14px;align-items:center;margin:0 40px 20px 0}
 .auc-bid-head img{width:72px;height:90px;object-fit:cover;border-radius:10px;flex:0 0 auto}
+
+/* Book club */
+.bc-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px);gap:40px;align-items:center}
+.bc-title{font-family:"Noto Serif SC","Songti SC",serif;font-weight:900;line-height:1.15}
+.bc-en{font-size:1.35rem;font-weight:600;color:var(--rasp);margin:.2em 0 .6em}
+.bc-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:22px}
+.bc-cover{width:100%;border-radius:10px;box-shadow:0 18px 40px rgba(60,10,30,.22);display:block}
+.bc-lead{font-family:"Noto Serif SC","Songti SC",serif;font-size:1.3rem;line-height:1.75;margin:12px 0 10px}
+.bc-list{list-style:none;margin:14px 0 0;padding:0}
+.bc-list li{display:grid;grid-template-columns:92px minmax(0,1fr);gap:16px;padding:13px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.bc-list li:last-child{border-bottom:0}
+.bc-t{font-weight:700;color:var(--plum);white-space:nowrap}
+.bc-list li.key .bc-t{color:var(--rasp)}
+.bc-list b{font-size:1.08rem}
+.bc-list small,.bc-host small{display:block;color:var(--muted);font-size:.9rem}
+.bc-hosts{display:grid;gap:16px;margin-top:14px}
+.bc-host{display:flex;gap:18px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.bc-host img{width:104px;height:104px;border-radius:50%;object-fit:cover;flex:none}
+.bc-host h3{margin:0;font-size:1.35rem}
+.bc-host h3 .muted{font-size:1rem;font-weight:600}
+.bc-host ul{list-style:none;margin:8px 0 0;padding:0;font-size:.98rem}
+.bc-host li+li{margin-top:6px}
+.bc-cta{text-align:center}.bc-cta .lede{margin:0 auto 24px}
+@media(max-width:700px){.bc-head{grid-template-columns:minmax(0,1fr)}.bc-cover{max-width:170px}.bc-host{flex-direction:column;text-align:center}}
