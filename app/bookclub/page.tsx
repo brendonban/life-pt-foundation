@@ -30,7 +30,7 @@ export default function BookClub() {
           <div className="eyebrow">Book club · 体验式读书会</div>
           <h1 className="bc-title" lang="zh-Hans">在「不讨好」中<br />靠近彼此。</h1>
           <p className="bc-en">Please, stop people-pleasing.</p>
-          <p className="lede" lang="zh-Hans">《被讨厌的勇气》体验式读书会：在关系地图中重新校準人际距离。</p>
+          <p className="lede" lang="zh-Hans">《被讨厌的勇气》体验式读书会：在关系地图中重新校准人际距离。</p>
           <div className="bc-actions">
             <Link href="/register" className="btn btn-rasp">立即报名 Sign up →</Link>
             <span className="muted">11am – 2pm · Free · Open to all</span>
