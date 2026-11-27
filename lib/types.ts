@@ -4,7 +4,7 @@ export interface EventInfo {
   places: string; rsvpNote: string; regOpen: boolean; regClosedMessage: string;
   organisers: string; contact: string; credit: string; quotes: string; privacyNote: string;
 }
-export interface NavSettings { about: boolean; speakers: boolean; sponsors: boolean; schedule: boolean; directory: boolean; gettingHere: boolean; signup: boolean; auction?: boolean }
+export interface NavSettings { about: boolean; speakers: boolean; sponsors: boolean; schedule: boolean; directory: boolean; gettingHere: boolean; signup: boolean; auction?: boolean; bookclub?: boolean }
 export interface LineOfSupport { aboveWords: string; belowWords: string; label: string; belowText: string; aboveText: string }
 export interface EmailTemplate { name: string; subject: string; body: string }
 export interface EmailSettings { autoConfirm: boolean; confirmSubject: string; confirmBody: string; templates: EmailTemplate[] }
