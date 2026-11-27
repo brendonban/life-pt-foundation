@@ -14,7 +14,7 @@ const SignupSchema = z.object({
   preferredName: opt(60),
   email: z.string({ error: 'Please enter a valid email address' }).trim().toLowerCase().max(200).email('Please enter a valid email address'),
   phone,
-  ageGroup: opt(40),
+  ageGroup: z.enum(['18–29', '30–39', '40–49', '50–59', '60–69', '70 and above'], { error: 'Please choose your age group' }),
   attendAs: z.enum(ATTEND_OPTIONS as [string, ...string[]], { error: 'Please choose how you are joining' }),
   bookclub: z.boolean().optional().default(false),
   organisation: opt(160),
