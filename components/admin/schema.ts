@@ -26,7 +26,7 @@ export const SECTIONS: Record<string, Section> = {
   nav: { label: 'Navigation bar', kind: 'object', path: 'nav', fields: [
     F('about', 'About', 'checkbox', { default: true }), F('speakers', 'Speakers', 'checkbox', { default: true }),
     F('sponsors', 'Sponsors', 'checkbox', { default: true }), F('schedule', 'Schedule', 'checkbox', { default: true }),
-    F('directory', 'Directory', 'checkbox', { default: true }), F('gettingHere', 'Getting Here', 'checkbox', { default: true }), F('auction', 'Art Auction', 'checkbox', { default: true }),
+    F('directory', 'Directory', 'checkbox', { default: true }), F('gettingHere', 'Getting Here', 'checkbox', { default: true }), F('auction', 'Art Auction', 'checkbox', { default: true }), F('bookclub', 'Book Club', 'checkbox', { default: true }),
     F('signup', 'Sign Up button', 'checkbox', { default: true }),
   ] },
   line: { label: 'Home: line of support', kind: 'object', path: 'line', fields: [
