@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { ATTEND_OPTIONS } from '@/lib/util';
 
+export const AGE = ['18–29', '30–39', '40–49', '50–59', '60–69', '70 and above'];
 const DIET = ['Halal', 'Vegetarian', 'Vegan', 'Soft food', 'Diabetic-friendly', 'Food allergy (tell us below)'];
 const PHOTO = ['I’m happy to appear in photos', 'Please don’t photograph me'];
 const PHONE_RE = /^[+\d][\d\s\-()]{6,}$/;
@@ -35,7 +36,7 @@ export default function SignupForm({ date }: { date: string }) {
     const fd = new FormData(form.current!);
     const t = (k: string) => String(fd.get(k) || '').trim();
     const data = {
-      name: t('name'), email: t('email').toLowerCase(), phone: t('phone'),
+      name: t('name'), ageGroup: t('ageGroup'), email: t('email').toLowerCase(), phone: t('phone'),
       attendAs: t('attendAs'), organisation: needsOrg ? t('organisation') : '',
       bookclub: fd.get('bookclub') === 'on',
       companions: parseInt(t('companions') || '0', 10) || 0, companion: t('companion'),
@@ -45,6 +46,7 @@ export default function SignupForm({ date }: { date: string }) {
     const problems: string[] = []; let first = '';
     const need = (ok: boolean, label: string, id: string) => { if (!ok) { problems.push(label); first ||= id; } };
     need(!!data.name, 'your full name', 'f_name');
+    need(!!data.ageGroup, 'your age group', 'f_age');
     need(/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(data.email), 'a valid email address', 'f_email');
     need(PHONE_RE.test(data.phone), 'a valid phone number', 'f_phone');
     need(!!data.attendAs, 'how you are joining', 'f_attend0');
@@ -83,7 +85,11 @@ export default function SignupForm({ date }: { date: string }) {
   return (
     <form className="card form-card" id="regForm" ref={form} noValidate onSubmit={submit}>
       <Step n={1} title="About you" />
-      <div className="field"><label htmlFor="f_name">Full name</label><input type="text" id="f_name" name="name" maxLength={120} required autoComplete="name" /></div>
+      <div className="grid g2" style={{ gap: '0 22px' }}>
+        <div className="field"><label htmlFor="f_name">Full name</label><input type="text" id="f_name" name="name" maxLength={120} required autoComplete="name" /></div>
+        <div className="field"><label htmlFor="f_age">Age group</label>
+          <select id="f_age" name="ageGroup" defaultValue="" required><option value="" disabled>Select your age group</option>{AGE.map((o) => <option key={o}>{o}</option>)}</select></div>
+      </div>
       <div className="grid g2" style={{ gap: '0 22px' }}>
         <div className="field"><label htmlFor="f_email">Email</label><span className="hint">For your confirmation.</span><input type="email" id="f_email" name="email" maxLength={200} required autoComplete="email" inputMode="email" placeholder="name@example.com" /></div>
         <div className="field"><label htmlFor="f_phone">Phone / WhatsApp</label><span className="hint">In case we need to reach you.</span><input type="tel" id="f_phone" name="phone" maxLength={40} required autoComplete="tel" inputMode="tel" placeholder="012-345 6789" /></div>
