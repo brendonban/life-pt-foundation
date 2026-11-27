@@ -24,7 +24,7 @@ export default function EmailPanel({ signups, content, api, mailConfigured, demo
 
   const matches = useMemo(() => (signups || []).filter((s) => s.email
     && (status === 'all' || (status === 'active' ? s.status !== 'cancelled' : (s.status || 'registered') === status))
-    && (!attend || s.attendAs === attend)), [signups, status, attend]);
+    && (!attend || (attend === '__bookclub' ? !!s.bookclub : s.attendAs === attend))), [signups, status, attend]);
   const sel = selected ?? new Set(matches.map((s) => s.id));
   const chosen = matches.filter((s) => sel.has(s.id));
   const sample: Partial<Signup> = chosen[0] || matches[0] || { name: 'Auntie Lim' };
@@ -78,7 +78,7 @@ export default function EmailPanel({ signups, content, api, mailConfigured, demo
         <h4 className="mail-h"><span className="step-n sm">1</span> Who gets it</h4>
         <div className="item-fields">
           <div><label htmlFor="m_status">Status</label><select id="m_status" value={status} onChange={(e) => { setStatus(e.target.value); setSelected(null); }}>{STATUS_OPTS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></div>
-          <div><label htmlFor="m_attend">Joining as</label><select id="m_attend" value={attend} onChange={(e) => { setAttend(e.target.value); setSelected(null); }}><option value="">Everyone</option>{ATTEND_OPTIONS.map((o) => <option key={o}>{o}</option>)}</select></div>
+          <div><label htmlFor="m_attend">Joining as</label><select id="m_attend" value={attend} onChange={(e) => { setAttend(e.target.value); setSelected(null); }}><option value="">Everyone</option><option value="__bookclub">Book club sign-ups</option>{ATTEND_OPTIONS.map((o) => <option key={o}>{o}</option>)}</select></div>
         </div>
         <div className="rcpt-tools">
           <span><b>{chosen.length}</b> of {matches.length} selected</span>

@@ -20,7 +20,7 @@ export default async function Register() {
       <div className="wrap page-head">
         <div className="eyebrow">Sign up · {e.date}</div>
         <h1>Save your place at LIFE<span className="plus">+</span></h1>
-        <p className="lede">It takes about 2 minutes. {e.rsvpNote}</p>
+        <p className="lede">It takes about 1 minute. {e.rsvpNote}</p>
       </div>
       <section style={{ paddingTop: 8 }}><div className="wrap">
         <div className="note" style={{ maxWidth: 780, marginBottom: 22 }}>🔒 {e.privacyNote}</div>

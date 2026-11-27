@@ -573,3 +573,6 @@ body:has(.tm-dialog[open]){overflow:hidden}
 .bc-host li+li{margin-top:6px}
 .bc-cta{text-align:center}.bc-cta .lede{margin:0 auto 24px}
 @media(max-width:700px){.bc-head{grid-template-columns:minmax(0,1fr)}.bc-cover{max-width:170px}.bc-host{flex-direction:column;text-align:center}}
+.check.bc-opt{align-items:flex-start;padding:16px 18px;border:1.5px solid var(--rasp);background:var(--blush-2);border-radius:14px;line-height:1.5}
+.check.bc-opt input{margin-top:4px}
+.check.bc-opt a{color:var(--rasp)}

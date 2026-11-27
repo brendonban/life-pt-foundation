@@ -48,7 +48,7 @@ export interface Content {
 export interface Signup {
   id: string; createdAt: string;
   name: string; preferredName?: string; email: string; phone: string; ageGroup?: string;
-  attendAs: string; organisation?: string; companions?: number; companion?: string;
+  attendAs: string; bookclub?: boolean; organisation?: string; companions?: number; companion?: string;
   language?: string; access?: string[]; diet?: string; emergencyName?: string; emergencyPhone?: string;
   photoConsent: string; heardFrom?: string; notes?: string; consent: boolean; status: string;
 }

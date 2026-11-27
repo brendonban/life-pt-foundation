@@ -4,7 +4,7 @@ import { fmtDate, useUI } from './ui';
 import type { Api } from './Editors';
 
 export const SIGNUP_COLS: [keyof Signup | string, string][] = [
-  ['createdAt', 'Signed up'], ['name', 'Full name'], ['preferredName', 'Call them'], ['email', 'Email'], ['phone', 'Phone'],
+  ['createdAt', 'Signed up'], ['name', 'Full name'], ['preferredName', 'Call them'], ['email', 'Email'], ['phone', 'Phone'], ['bookclub', 'Book club'],
   ['ageGroup', 'Age'], ['attendAs', 'Joining as'], ['organisation', 'Organisation'], ['companions', '+ People'],
   ['companion', 'Companion names'], ['language', 'Language'], ['access', 'Access needs'], ['diet', 'Diet'],
   ['emergencyName', 'Emergency contact'], ['emergencyPhone', 'Emergency phone'], ['photoConsent', 'Photos'],
@@ -13,6 +13,7 @@ export const SIGNUP_COLS: [keyof Signup | string, string][] = [
 const cell = (s: Signup, k: string) => {
   const v = (s as unknown as Record<string, unknown>)[k];
   if (k === 'createdAt') return fmtDate(String(v || ''));
+  if (k === 'bookclub') return v ? 'Yes' : '';
   return Array.isArray(v) ? v.join(', ') : String(v ?? '');
 };
 function toCSV(list: Signup[], sep = ',') {
@@ -37,8 +38,9 @@ export default function SignupsPanel({ list, reload, setList, api, content, onTo
         <div className="stat-box"><b>{active.length}</b><span className="muted">sign-ups</span></div>
         <div className="stat-box"><b>{people}{cap ? <span style={{ fontSize: '1rem', color: 'var(--muted)' }}> / {cap}</span> : null}</b><span className="muted">people incl. companions</span></div>
         <div className="stat-box"><b>{by('Older adult (50+)')}</b><span className="muted">older adults</span></div>
-        <div className="stat-box"><b>{by('Younger adult (under 50)')}</b><span className="muted">younger adults</span></div>
         <div className="stat-box"><b>{by('Caregiver, family or friend', 'Caregiver or family member')}</b><span className="muted">caregivers</span></div>
+        <div className="stat-box"><b>{by('External vendor')}</b><span className="muted">vendors</span></div>
+        <div className="stat-box"><b>{active.filter((s) => s.bookclub).length}</b><span className="muted">book club</span></div>
         <div className="stat-box"><b>{active.filter((s) => /don/.test(s.photoConsent || '')).length}</b><span className="muted">no photos</span></div>
       </div>
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16, alignItems: 'center' }}>

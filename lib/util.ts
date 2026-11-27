@@ -47,5 +47,5 @@ export const SPEAKER_CATEGORIES = ['Honorary Guest', 'Guest of Honour', 'Keynote
 
 export const ATTEND_OPTIONS = [
   'Older adult (50+)', 'Younger adult (under 50)', 'Caregiver, family or friend',
-  'Community organisation', 'Health professional or student', 'Prefer not to say',
+  'Community organisation', 'Health professional or student', 'External vendor',
 ];

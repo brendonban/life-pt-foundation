@@ -16,6 +16,7 @@ const SignupSchema = z.object({
   phone,
   ageGroup: opt(40),
   attendAs: z.enum(ATTEND_OPTIONS as [string, ...string[]], { error: 'Please choose how you are joining' }),
+  bookclub: z.boolean().optional().default(false),
   organisation: opt(160),
   companions: z.coerce.number().int().min(0).max(2).default(0),
   companion: opt(160),
@@ -51,7 +52,7 @@ export const POST = handle(async (req: Request) => {
   }
   const { website, ...data } = parsed.data; void website;
   if (!data.companions) data.companion = '';
-  if (!/organisation|professional/i.test(data.attendAs)) data.organisation = '';
+  if (!/organisation|professional|vendor/i.test(data.attendAs)) data.organisation = '';
 
   await store.addSignup({ ...data, status: 'registered' });
 
